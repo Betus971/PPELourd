@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 
 namespace PPELourd
 {
-   
+
     public partial class Dashboard : Form
     {
         MySqlConnection connection = new MySqlConnection("server=localhost;database=c#;uid=donavan;pwd=dodo;");
@@ -43,6 +44,15 @@ namespace PPELourd
             DataTable dt = new DataTable();
             dt.Load(reader);
             DataGridView1.DataSource = dt;
+        }
+
+       
+
+        private void ButtonAfficherReservationForm_Click(object sender, EventArgs e)
+        {
+            var reservation = new ReservationForm();
+            reservation.Show();
+           this.Hide();
         }
     }
 }

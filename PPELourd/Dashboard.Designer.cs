@@ -31,6 +31,8 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -38,6 +40,7 @@
             DataGridView1 = new Guna.UI2.WinForms.Guna2DataGridView();
             guna2GradientPanel1 = new Guna.UI2.WinForms.Guna2GradientPanel();
             AfficherTable = new Guna.UI2.WinForms.Guna2Button();
+            ButtonAfficherReservationForm = new Guna.UI2.WinForms.Guna2Button();
             ((System.ComponentModel.ISupportInitialize)DataGridView1).BeginInit();
             guna2GradientPanel1.SuspendLayout();
             SuspendLayout();
@@ -54,7 +57,8 @@
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             DataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DataGridView1.ColumnHeadersHeight = 4;
+            DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
@@ -80,7 +84,7 @@
             DataGridView1.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
             DataGridView1.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 9F);
             DataGridView1.ThemeStyle.HeaderStyle.ForeColor = Color.White;
-            DataGridView1.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DataGridView1.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             DataGridView1.ThemeStyle.HeaderStyle.Height = 4;
             DataGridView1.ThemeStyle.ReadOnly = false;
             DataGridView1.ThemeStyle.RowsStyle.BackColor = Color.White;
@@ -94,18 +98,19 @@
             // 
             // guna2GradientPanel1
             // 
+            guna2GradientPanel1.Controls.Add(ButtonAfficherReservationForm);
             guna2GradientPanel1.Controls.Add(AfficherTable);
-            guna2GradientPanel1.CustomizableEdges = customizableEdges3;
+            guna2GradientPanel1.CustomizableEdges = customizableEdges5;
             guna2GradientPanel1.Dock = DockStyle.Left;
             guna2GradientPanel1.Location = new Point(0, 0);
             guna2GradientPanel1.Name = "guna2GradientPanel1";
-            guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            guna2GradientPanel1.ShadowDecoration.CustomizableEdges = customizableEdges6;
             guna2GradientPanel1.Size = new Size(200, 566);
             guna2GradientPanel1.TabIndex = 1;
             // 
             // AfficherTable
             // 
-            AfficherTable.CustomizableEdges = customizableEdges1;
+            AfficherTable.CustomizableEdges = customizableEdges3;
             AfficherTable.DisabledState.BorderColor = Color.DarkGray;
             AfficherTable.DisabledState.CustomBorderColor = Color.DarkGray;
             AfficherTable.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -115,11 +120,29 @@
             AfficherTable.ForeColor = Color.White;
             AfficherTable.Location = new Point(12, 112);
             AfficherTable.Name = "AfficherTable";
-            AfficherTable.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            AfficherTable.ShadowDecoration.CustomizableEdges = customizableEdges4;
             AfficherTable.Size = new Size(180, 45);
             AfficherTable.TabIndex = 0;
             AfficherTable.Text = "Afficher";
             AfficherTable.Click += AfficherTable_Click;
+            // 
+            // ButtonAfficherReservationForm
+            // 
+            ButtonAfficherReservationForm.CustomizableEdges = customizableEdges1;
+            ButtonAfficherReservationForm.DisabledState.BorderColor = Color.DarkGray;
+            ButtonAfficherReservationForm.DisabledState.CustomBorderColor = Color.DarkGray;
+            ButtonAfficherReservationForm.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            ButtonAfficherReservationForm.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            ButtonAfficherReservationForm.FillColor = Color.Black;
+            ButtonAfficherReservationForm.Font = new Font("Segoe UI", 9F);
+            ButtonAfficherReservationForm.ForeColor = Color.White;
+            ButtonAfficherReservationForm.Location = new Point(12, 192);
+            ButtonAfficherReservationForm.Name = "ButtonAfficherReservationForm";
+            ButtonAfficherReservationForm.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            ButtonAfficherReservationForm.Size = new Size(180, 45);
+            ButtonAfficherReservationForm.TabIndex = 2;
+            ButtonAfficherReservationForm.Text = "Afficher le formulaire";
+            ButtonAfficherReservationForm.Click += ButtonAfficherReservationForm_Click;
             // 
             // Dashboard
             // 
@@ -140,5 +163,7 @@
         private Guna.UI2.WinForms.Guna2DataGridView DataGridView1;
         private Guna.UI2.WinForms.Guna2GradientPanel guna2GradientPanel1;
         private Guna.UI2.WinForms.Guna2Button AfficherTable;
+        private Guna.UI2.WinForms.Guna2Button ButtonReserver;
+        private Guna.UI2.WinForms.Guna2Button ButtonAfficherReservationForm;
     }
 }

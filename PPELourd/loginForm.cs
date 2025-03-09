@@ -8,7 +8,7 @@ namespace PPELourd
         string server = "localhost";
         string uid = "donavan";
         string password = "dodo";
-        string database = "c#";
+        string database = "ppelourd";
         public loginForm()
         {
             InitializeComponent();

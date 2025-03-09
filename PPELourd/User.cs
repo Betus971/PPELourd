@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ZstdSharp.Unsafe;
 
 namespace PPELourd
 {
@@ -10,21 +12,34 @@ namespace PPELourd
     {
         public static User UtilisateurConnecte { get; set; }
 
+        public int Id { get; set; }
         private string nom;
         private string prenom;
         private string pseudo;
         private string mdp;
 
 
-        public User (string nom, string prenom, string pseudo, string mdp)
+        public User (int Id ,string nom, string prenom, string pseudo, string mdp)
 
         {
+            this.Id = Id;
             this.nom = nom;
             this.prenom = prenom;
             this.pseudo = pseudo;
             this.mdp = mdp;
 
         }
+
+        public int GetId()
+        {
+            return Id;
+        }
+
+        public void SetId(int id)
+        {
+            this.Id = id;
+        }
+
         public string Nom
         {
             get { return nom; }
