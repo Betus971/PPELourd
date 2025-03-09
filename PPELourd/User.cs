@@ -10,7 +10,17 @@ namespace PPELourd
 {
     class User
     {
-        public static User UtilisateurConnecte { get; set; }
+        private static User utilisateurConnecte;
+
+        public static User GetutilisateurConnecte()
+        {
+            return utilisateurConnecte;
+        }
+
+        public static void SetUtilisateurConnecte(User value)
+        {
+            utilisateurConnecte = value;
+        }
 
         public int Id { get; set; }
         private string nom;
@@ -55,12 +65,16 @@ namespace PPELourd
 
 
 
-        public string Pseudo
+        // Getter et Setter pour Pseudo
+        public string GetPseudo()
         {
-            get { return pseudo; }
-            set { pseudo = value; }
+            return pseudo;
         }
 
+        public void SetPseudo(string value)
+        {
+            pseudo = value;
+        }
 
         public string Mdp
         {

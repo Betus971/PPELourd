@@ -83,7 +83,7 @@ namespace PPELourd
                 {
                     cmd.Parameters.AddWithValue("@nom", user.Nom);
                     cmd.Parameters.AddWithValue("@prenom", user.Prenom);
-                    cmd.Parameters.AddWithValue("@pseudo", user.Pseudo);
+                    cmd.Parameters.AddWithValue("@pseudo", user.GetPseudo);
                     cmd.Parameters.AddWithValue("@password", user.Mdp);
 
                     OpenConnection();

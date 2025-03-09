@@ -38,17 +38,21 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             ButtonReservation = new Guna.UI2.WinForms.Guna2Button();
             ComboBoxEquipement = new Guna.UI2.WinForms.Guna2ComboBox();
-            DateReservation = new Guna.UI2.WinForms.Guna2DateTimePicker();
             guna2ContextMenuStrip1 = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             dashboardToolStripMenuItem = new ToolStripMenuItem();
             guna2ContextMenuStrip2 = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
             dashboardToolStripMenuItem1 = new ToolStripMenuItem();
             label1 = new Label();
             labelUtilisateur = new Label();
-            guna2DateTimePicker1 = new Guna.UI2.WinForms.Guna2DateTimePicker();
             ComboBoxCategorieEquipement = new Guna.UI2.WinForms.Guna2ComboBox();
+            DateTimePickeReservation1 = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            DateTimePickeReservation2 = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            UserStatus = new Label();
+            ButtonToDashboard = new Guna.UI2.WinForms.Guna2Button();
             guna2ContextMenuStrip1.SuspendLayout();
             guna2ContextMenuStrip2.SuspendLayout();
             SuspendLayout();
@@ -89,23 +93,6 @@
             ComboBoxEquipement.Size = new Size(200, 36);
             ComboBoxEquipement.TabIndex = 1;
             ComboBoxEquipement.SelectedIndexChanged += ComboBoxEquipement_SelectedIndexChanged;
-            // 
-            // DateReservation
-            // 
-            DateReservation.Checked = true;
-            DateReservation.CustomizableEdges = customizableEdges5;
-            DateReservation.FillColor = Color.Navy;
-            DateReservation.Font = new Font("Segoe UI", 9F);
-            DateReservation.Format = DateTimePickerFormat.Long;
-            DateReservation.Location = new Point(319, 20);
-            DateReservation.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
-            DateReservation.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
-            DateReservation.Name = "DateReservation";
-            DateReservation.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            DateReservation.Size = new Size(200, 36);
-            DateReservation.TabIndex = 2;
-            DateReservation.Value = new DateTime(2025, 3, 6, 18, 41, 18, 218);
-            DateReservation.ValueChanged += DateReservation_ValueChanged;
             // 
             // guna2ContextMenuStrip1
             // 
@@ -167,26 +154,10 @@
             labelUtilisateur.TabIndex = 6;
             labelUtilisateur.Click += label2_Click;
             // 
-            // guna2DateTimePicker1
-            // 
-            guna2DateTimePicker1.Checked = true;
-            guna2DateTimePicker1.CustomizableEdges = customizableEdges7;
-            guna2DateTimePicker1.Font = new Font("Segoe UI", 9F);
-            guna2DateTimePicker1.Format = DateTimePickerFormat.Long;
-            guna2DateTimePicker1.Location = new Point(319, 81);
-            guna2DateTimePicker1.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
-            guna2DateTimePicker1.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
-            guna2DateTimePicker1.Name = "guna2DateTimePicker1";
-            guna2DateTimePicker1.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            guna2DateTimePicker1.Size = new Size(200, 36);
-            guna2DateTimePicker1.TabIndex = 7;
-            guna2DateTimePicker1.Value = new DateTime(2025, 3, 9, 10, 18, 17, 44);
-            guna2DateTimePicker1.ValueChanged += guna2DateTimePicker1_ValueChanged;
-            // 
             // ComboBoxCategorieEquipement
             // 
             ComboBoxCategorieEquipement.BackColor = Color.Transparent;
-            ComboBoxCategorieEquipement.CustomizableEdges = customizableEdges9;
+            ComboBoxCategorieEquipement.CustomizableEdges = customizableEdges5;
             ComboBoxCategorieEquipement.DrawMode = DrawMode.OwnerDrawFixed;
             ComboBoxCategorieEquipement.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboBoxCategorieEquipement.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -196,25 +167,92 @@
             ComboBoxCategorieEquipement.ItemHeight = 30;
             ComboBoxCategorieEquipement.Location = new Point(319, 165);
             ComboBoxCategorieEquipement.Name = "ComboBoxCategorieEquipement";
-            ComboBoxCategorieEquipement.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            ComboBoxCategorieEquipement.ShadowDecoration.CustomizableEdges = customizableEdges6;
             ComboBoxCategorieEquipement.Size = new Size(200, 36);
             ComboBoxCategorieEquipement.TabIndex = 8;
             ComboBoxCategorieEquipement.SelectedIndexChanged += ComboBoxCategorieEquipement_SelectedIndexChanged;
+            // 
+            // DateTimePickeReservation1
+            // 
+            DateTimePickeReservation1.Checked = true;
+            DateTimePickeReservation1.CustomizableEdges = customizableEdges7;
+            DateTimePickeReservation1.FillColor = Color.Red;
+            DateTimePickeReservation1.Font = new Font("Segoe UI", 9F);
+            DateTimePickeReservation1.Format = DateTimePickerFormat.Long;
+            DateTimePickeReservation1.Location = new Point(319, 20);
+            DateTimePickeReservation1.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
+            DateTimePickeReservation1.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
+            DateTimePickeReservation1.Name = "DateTimePickeReservation1";
+            DateTimePickeReservation1.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            DateTimePickeReservation1.Size = new Size(200, 36);
+            DateTimePickeReservation1.TabIndex = 9;
+            DateTimePickeReservation1.Value = new DateTime(2025, 3, 9, 12, 31, 55, 594);
+            DateTimePickeReservation1.ValueChanged += DateTimePickeReservation1_ValueChanged_1;
+            // 
+            // DateTimePickeReservation2
+            // 
+            DateTimePickeReservation2.Checked = true;
+            DateTimePickeReservation2.CustomizableEdges = customizableEdges9;
+            DateTimePickeReservation2.FillColor = Color.Blue;
+            DateTimePickeReservation2.Font = new Font("Segoe UI", 9F);
+            DateTimePickeReservation2.Format = DateTimePickerFormat.Long;
+            DateTimePickeReservation2.Location = new Point(319, 97);
+            DateTimePickeReservation2.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
+            DateTimePickeReservation2.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
+            DateTimePickeReservation2.Name = "DateTimePickeReservation2";
+            DateTimePickeReservation2.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            DateTimePickeReservation2.Size = new Size(200, 36);
+            DateTimePickeReservation2.TabIndex = 10;
+            DateTimePickeReservation2.Value = new DateTime(2025, 3, 9, 12, 32, 11, 692);
+            DateTimePickeReservation2.ValueChanged += DateTimePickeReservation2_ValueChanged;
+            // 
+            // UserStatus
+            // 
+            UserStatus.AutoSize = true;
+            UserStatus.Location = new Point(32, 15);
+            UserStatus.Name = "UserStatus";
+            UserStatus.Size = new Size(38, 15);
+            UserStatus.TabIndex = 11;
+            UserStatus.Text = "label2";
+            UserStatus.Click += UserStatus_Click;
+            // 
+            // ButtonToDashboard
+            // 
+            ButtonToDashboard.BorderRadius = 15;
+            ButtonToDashboard.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            ButtonToDashboard.CustomizableEdges = customizableEdges11;
+            ButtonToDashboard.DisabledState.BorderColor = Color.DarkGray;
+            ButtonToDashboard.DisabledState.CustomBorderColor = Color.DarkGray;
+            ButtonToDashboard.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            ButtonToDashboard.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            ButtonToDashboard.FillColor = Color.FromArgb(0, 0, 192);
+            ButtonToDashboard.Font = new Font("Segoe UI", 9F);
+            ButtonToDashboard.ForeColor = Color.White;
+            ButtonToDashboard.Location = new Point(319, 447);
+            ButtonToDashboard.Name = "ButtonToDashboard";
+            ButtonToDashboard.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            ButtonToDashboard.Size = new Size(200, 45);
+            ButtonToDashboard.TabIndex = 12;
+            ButtonToDashboard.Text = "Dashboard";
+            ButtonToDashboard.Click += ButtonToDashboard_Click;
             // 
             // ReservationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 528);
+            Controls.Add(ButtonToDashboard);
+            Controls.Add(UserStatus);
+            Controls.Add(DateTimePickeReservation2);
+            Controls.Add(DateTimePickeReservation1);
             Controls.Add(ComboBoxCategorieEquipement);
-            Controls.Add(guna2DateTimePicker1);
             Controls.Add(labelUtilisateur);
             Controls.Add(label1);
-            Controls.Add(DateReservation);
             Controls.Add(ComboBoxEquipement);
             Controls.Add(ButtonReservation);
             Name = "ReservationForm";
             Text = "Reservation";
+            Load += ReservationForm_Load;
             guna2ContextMenuStrip1.ResumeLayout(false);
             guna2ContextMenuStrip2.ResumeLayout(false);
             ResumeLayout(false);
@@ -225,14 +263,16 @@
 
         private Guna.UI2.WinForms.Guna2Button ButtonReservation;
         private Guna.UI2.WinForms.Guna2ComboBox ComboBoxEquipement;
-        private Guna.UI2.WinForms.Guna2DateTimePicker DateReservation;
         private Guna.UI2.WinForms.Guna2ContextMenuStrip guna2ContextMenuStrip1;
         private ToolStripMenuItem dashboardToolStripMenuItem;
         private Guna.UI2.WinForms.Guna2ContextMenuStrip guna2ContextMenuStrip2;
         private ToolStripMenuItem dashboardToolStripMenuItem1;
         private Label label1;
         private Label labelUtilisateur;
-        private Guna.UI2.WinForms.Guna2DateTimePicker guna2DateTimePicker1;
         private Guna.UI2.WinForms.Guna2ComboBox ComboBoxCategorieEquipement;
+        private Guna.UI2.WinForms.Guna2DateTimePicker DateTimePickeReservation1;
+        private Guna.UI2.WinForms.Guna2DateTimePicker DateTimePickeReservation2;
+        private Label UserStatus;
+        private Guna.UI2.WinForms.Guna2Button ButtonToDashboard;
     }
 }

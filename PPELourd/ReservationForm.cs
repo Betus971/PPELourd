@@ -17,31 +17,32 @@ namespace PPELourd
         private int idEquipement;
         private int idCategorie;
         private bool OuvertPartDoubleClick;
-        
 
-       // private List<Reservation> reservations = new List<Reservation>();
-        public ReservationForm( int idEquipement = 0 , int idCategorie = 0 , bool ouvertparDoubleClick = false)
+
+
+
+        // private List<Reservation> reservations = new List<Reservation>();
+        public ReservationForm(int idEquipement = 0, int idCategorie = 0, bool ouvertparDoubleClick = false)
         {
             InitializeComponent();
-            this.idEquipement= idEquipement;
+            this.idEquipement = idEquipement;
             this.idCategorie = idCategorie;
             this.OuvertPartDoubleClick = ouvertparDoubleClick;
 
-            if (User.UtilisateurConnecte != null)
+            if (User.GetutilisateurConnecte != null)
             {
-                labelUtilisateur.Text = $"Connecté en tant que : {User.UtilisateurConnecte.Pseudo}";
+                UserStatus.Text = $"Connecté en tant que : {User.GetutilisateurConnecte().GetPseudo}";
                 LoadCategories();
             }
             else
             {
-                MessageBox.Show("Aucun utilisateur connecté.");
-                this.Close();
+                UserStatus.Text = "Aucun utilisateur est connecté";
             }
         }
 
         private void LoadCategories()
         {
-            using (MySqlConnection con = new MySqlConnection("Votre_Chaîne_De_Connexion"))
+            using (MySqlConnection con = new MySqlConnection("server=localhost;database=ppelourd;user=donavan;password=dodo;"))
             {
                 try
                 {
@@ -63,7 +64,7 @@ namespace PPELourd
 
         private void LoadEquipements(int idCategorie)
         {
-            using (MySqlConnection con = new MySqlConnection("server=localhost;database=c#;uid=donavan;pwd=dodo"))
+            using (MySqlConnection con = new MySqlConnection("server=localhost;database=ppelourd;uid=donavan;pwd=dodo"))
             {
                 try
                 {
@@ -85,7 +86,7 @@ namespace PPELourd
             }
         }
 
-   
+
         private void ButtonReservation_Click(object sender, EventArgs e)
         {
             if (ComboBoxEquipement.SelectedValue == null)
@@ -94,8 +95,8 @@ namespace PPELourd
                 return;
             }
 
-            DateTime dateDebut = DateReservation.Value;
-            DateTime dateFin = guna2DateTimePicker1.Value;
+            DateTime dateDebut = DateTimePickeReservation1.Value;
+            DateTime dateFin = DateTimePickeReservation2.Value;
 
             if (dateFin <= dateDebut)
             {
@@ -104,20 +105,20 @@ namespace PPELourd
             }
 
             int idEquipement = (int)ComboBoxEquipement.SelectedValue;
-            int idUtilisateur = User.UtilisateurConnecte?.Id ?? 0;
+            int idUtilisateur = User.GetutilisateurConnecte()?.Id ?? 0;
 
             if (idUtilisateur == 0)
             {
                 MessageBox.Show("Aucun utilisateur connecté.");
                 return;
             }
-            using (MySqlConnection con = new MySqlConnection("server=localhost;database=c#;uid=donavan;pwd=dodo"))
+            using (MySqlConnection con = new MySqlConnection("server=localhost;database=ppelourd;uid=donavan;pwd=dodo"))
             {
                 try
                 {
                     con.Open();
-                    string insertQuery = "INSERT INTO demandes (id_equipement, id_utilisateur, date_debut, date_fin, statut_demande) " +
-                                         "VALUES (@idEquipement, @idUtilisateur, @dateDebut, @dateFin, 'en attente')";
+                    string insertQuery = "INSERT INTO reservation (user_id,equipement_id, date_debut, date_fin) " +
+                                         "VALUES  (@idUtilisateur ,@idEquipement, @dateDebut, @dateFin)";
 
                     MySqlCommand cmd = new MySqlCommand(insertQuery, con);
                     cmd.Parameters.AddWithValue("@idEquipement", idEquipement);
@@ -153,7 +154,7 @@ namespace PPELourd
 
         }
 
-        private void guna2DateTimePicker1_ValueChanged(object sender, EventArgs e)
+        private void DateTimePickeReservation1_ValueChanged(object sender, EventArgs e)
         {
 
         }
@@ -171,6 +172,55 @@ namespace PPELourd
             }
         }
 
-      
+        private void DateTimePickeReservation1_ValueChanged_1(object sender, EventArgs e)
+        {
+            DateTime dateSelectionnee = DateTimePickeReservation1.Value;
+            DateTime deuxMoisPlusTard = dateSelectionnee.AddMonths(2);
+
+            DateTimePickeReservation2.MinDate = dateSelectionnee;
+            DateTimePickeReservation2.MaxDate = deuxMoisPlusTard;
+
+            if (DateTimePickeReservation2.Value < dateSelectionnee)
+            {
+                DateTimePickeReservation2.Value = dateSelectionnee;
+            }
+            else if (DateTimePickeReservation2.Value > deuxMoisPlusTard)
+            {
+                DateTimePickeReservation2.Value = deuxMoisPlusTard;
+            }
+        }
+
+        private void DateTimePickeReservation2_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime dateSelectionnee1 = DateTimePickeReservation1.Value;
+            DateTime deuxMoisPlusTard = dateSelectionnee1.AddMonths(2);
+
+            if (DateTimePickeReservation2.Value < dateSelectionnee1)
+            {
+                DateTimePickeReservation2.Value = dateSelectionnee1;
+            }
+            else if (DateTimePickeReservation2.Value > deuxMoisPlusTard)
+            {
+                DateTimePickeReservation2.Value = deuxMoisPlusTard;
+            }
+        }
+
+        private void ReservationForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UserStatus_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ButtonToDashboard_Click(object sender, EventArgs e)
+        {
+            var dashboard = new Dashboard();
+            dashboard.Show();
+            this.Hide();
+
+        }
     }
 }

@@ -35,44 +35,51 @@ namespace PPELourd
         }
 
         private void ButtonLogin_Click(object sender, EventArgs e)
-        { 
-            
+        {
+
             // Récupération des valeurs des TextBox
             string pseudo = TextBoxPseudo.Text;
             string password = TextBoxMdp.Text;
 
             // Création de la requête SQL
             string query = $"select * from   user where  pseudo   = '{pseudo}' and password = '{password}'";
+            String conString = "server=localhost;uid=donavan;pwd=dodo;database=ppelourd";
 
 
-            String conString = "server=" + server + ";uid=" + uid + ";pwd=" + password + ";database=" + database;
             MySqlConnection con = new MySqlConnection(conString);
             MySqlCommand cmd = new MySqlCommand(query, con);
-
-            con.Open();
-            var reader = cmd.ExecuteReader();
-
-
-            var succes = reader.HasRows;
-            if (succes)
-            
-            
-            
-            
+            cmd.Parameters.AddWithValue("@pseudo", pseudo);
+            cmd.Parameters.AddWithValue("@password", password);
+           
+            try
             {
-                var dashboard = new Dashboard();
-                dashboard.Show();
-                this.Hide();
+                con.Open();
+                using (var reader = cmd.ExecuteReader())
 
+                  if (reader.Read())
+                {
+                    reader.Read(); // Lire la première ligne du résultat
+                    int id = reader.GetInt32("id");
+                    string nom = reader.GetString("nom");
+                    string prenom = reader.GetString("prenom");
+                    string Pseudo = reader.GetString("pseudo");
+                    string mdp = reader.GetString("password");
 
+                        User.SetUtilisateurConnecte(new User(id, nom, prenom, Pseudo, mdp));
+                        // Créez le formulaire de réservation sans utiliser `this` directement
+                        ReservationForm reservation = new ReservationForm();
+                    reservation.Show();
+                    this.Hide(); // Ici, cela devrait fonctionner si `this` est valide
+                }
+                else
+                {
+                    MessageBox.Show("Erreur : utilisateur ou mot de passe incorrect");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("ya une erreur");
-
-
+                MessageBox.Show($"Erreur : {ex.Message}");
             }
-
         }
     }
 }
