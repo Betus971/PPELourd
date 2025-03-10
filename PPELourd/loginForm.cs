@@ -50,36 +50,41 @@ namespace PPELourd
             MySqlCommand cmd = new MySqlCommand(query, con);
             cmd.Parameters.AddWithValue("@pseudo", pseudo);
             cmd.Parameters.AddWithValue("@password", password);
-           
+
             try
             {
                 con.Open();
                 using (var reader = cmd.ExecuteReader())
 
-                  if (reader.Read())
-                {
-                    reader.Read(); // Lire la première ligne du résultat
-                    int id = reader.GetInt32("id");
-                    string nom = reader.GetString("nom");
-                    string prenom = reader.GetString("prenom");
-                    string Pseudo = reader.GetString("pseudo");
-                    string mdp = reader.GetString("password");
+                    if (reader.Read())
+                    {
+                        reader.Read(); // Lire la première ligne du résultat
+                        int id = reader.GetInt32("id");
+                        string nom = reader.GetString("nom");
+                        string prenom = reader.GetString("prenom");
+                        string Pseudo = reader.GetString("pseudo");
+                        string mdp = reader.GetString("password");
 
                         User.SetUtilisateurConnecte(new User(id, nom, prenom, Pseudo, mdp));
                         // Créez le formulaire de réservation sans utiliser `this` directement
                         ReservationForm reservation = new ReservationForm();
-                    reservation.Show();
-                    this.Hide(); // Ici, cela devrait fonctionner si `this` est valide
-                }
-                else
-                {
-                    MessageBox.Show("Erreur : utilisateur ou mot de passe incorrect");
-                }
+                        reservation.Show();
+                        this.Hide(); // Ici, cela devrait fonctionner si `this` est valide
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erreur : utilisateur ou mot de passe incorrect");
+                    }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erreur : {ex.Message}");
             }
+        }
+
+        private void TextBoxMdp_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
