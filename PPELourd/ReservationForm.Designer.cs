@@ -40,6 +40,8 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             ButtonReservation = new Guna.UI2.WinForms.Guna2Button();
             ComboBoxEquipement = new Guna.UI2.WinForms.Guna2ComboBox();
             guna2ContextMenuStrip1 = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
@@ -53,6 +55,7 @@
             DateTimePickeReservation2 = new Guna.UI2.WinForms.Guna2DateTimePicker();
             UserStatus = new Label();
             ButtonToDashboard = new Guna.UI2.WinForms.Guna2Button();
+            ButtonRendreEquipement = new Guna.UI2.WinForms.Guna2Button();
             guna2ContextMenuStrip1.SuspendLayout();
             guna2ContextMenuStrip2.SuspendLayout();
             SuspendLayout();
@@ -144,6 +147,7 @@
             label1.Size = new Size(143, 15);
             label1.TabIndex = 5;
             label1.Text = "choisissez un equipement";
+            label1.Click += label1_Click;
             // 
             // labelUtilisateur
             // 
@@ -236,11 +240,31 @@
             ButtonToDashboard.Text = "Dashboard";
             ButtonToDashboard.Click += ButtonToDashboard_Click;
             // 
+            // ButtonRendreEquipement
+            // 
+            ButtonRendreEquipement.BorderRadius = 15;
+            ButtonRendreEquipement.CustomizableEdges = customizableEdges13;
+            ButtonRendreEquipement.DisabledState.BorderColor = Color.DarkGray;
+            ButtonRendreEquipement.DisabledState.CustomBorderColor = Color.DarkGray;
+            ButtonRendreEquipement.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            ButtonRendreEquipement.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            ButtonRendreEquipement.FillColor = Color.DarkGreen;
+            ButtonRendreEquipement.Font = new Font("Segoe UI", 9F);
+            ButtonRendreEquipement.ForeColor = Color.White;
+            ButtonRendreEquipement.Location = new Point(576, 362);
+            ButtonRendreEquipement.Name = "ButtonRendreEquipement";
+            ButtonRendreEquipement.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            ButtonRendreEquipement.Size = new Size(180, 45);
+            ButtonRendreEquipement.TabIndex = 13;
+            ButtonRendreEquipement.Text = "Rendre l'equipement";
+            ButtonRendreEquipement.Click += ButtonRendreEquipement_Click;
+            // 
             // ReservationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 528);
+            Controls.Add(ButtonRendreEquipement);
             Controls.Add(ButtonToDashboard);
             Controls.Add(UserStatus);
             Controls.Add(DateTimePickeReservation2);
@@ -274,5 +298,6 @@
         private Guna.UI2.WinForms.Guna2DateTimePicker DateTimePickeReservation2;
         private Label UserStatus;
         private Guna.UI2.WinForms.Guna2Button ButtonToDashboard;
+        private Guna.UI2.WinForms.Guna2Button ButtonRendreEquipement;
     }
 }

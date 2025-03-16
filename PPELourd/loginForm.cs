@@ -31,8 +31,11 @@ namespace PPELourd
 
         private void InscriptionButton_Click(object sender, EventArgs e)
         {
-
+            var inscription = new Inscription();
+            inscription.Show();
+            this.Hide();
         }
+        
 
         private void ButtonLogin_Click(object sender, EventArgs e)
         {
@@ -66,10 +69,9 @@ namespace PPELourd
                         string mdp = reader.GetString("password");
 
                         User.SetUtilisateurConnecte(new User(id, nom, prenom, Pseudo, mdp));
-                        // Créez le formulaire de réservation sans utiliser `this` directement
-                        ReservationForm reservation = new ReservationForm();
-                        reservation.Show();
-                        this.Hide(); // Ici, cela devrait fonctionner si `this` est valide
+                        var dashboard = new Dashboard();
+                        dashboard.Show();
+                        this.Hide();
                     }
                     else
                     {
@@ -83,6 +85,11 @@ namespace PPELourd
         }
 
         private void TextBoxMdp_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBoxPseudo_TextChanged(object sender, EventArgs e)
         {
 
         }

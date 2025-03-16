@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Guna.UI2.WinForms;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,41 +35,95 @@ namespace PPELourd
         private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        } 
+        
+        
+        private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Vérifiez que l'index de la ligne est valide
+            {
+                // Obtenez la ligne sélectionnée
+                DataGridViewRow selectedRow = DataGridView1.Rows[e.RowIndex];
+
+                // Vérifiez que la cellule "IDReservation" n'est pas vide
+                if (selectedRow.Cells["IDReservation"].Value != DBNull.Value)
+                {
+                    try
+                    {
+                        // Extrayez l'ID de réservation de la cellule
+                        int idReservation = Convert.ToInt32(selectedRow.Cells["IDReservation"].Value);
+
+                        // Affichez l'ID de réservation pour vérification (optionnel)
+                        MessageBox.Show("ID de réservation sélectionné : " + idReservation);
+
+                        // Ouvrez le formulaire de réservation avec l'ID de réservation
+                        var reservationForm = new ReservationForm(idReservation);
+                        reservationForm.ShowDialog();
+
+                        // Après la modification ou le rendu de l'équipement, mettez à jour l'état de l'équipement
+                        // et rechargez la liste des réservations
+                        AfficherTable_Click(null, null);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erreur lors de la récupération de l'ID de réservation : " + ex.Message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("ID de réservation non valide.");
+                }
+            }
         }
 
+       
         private void AfficherTable_Click(object sender, EventArgs e)
         {
-            String conString = "server=" + server + ";uid=" + uid + ";pwd=" + password + ";database=" + database;
-            using MySqlConnection con = new MySqlConnection(conString);
+            int idUtilisateur = User.GetutilisateurConnecte()?.Id ?? 0;
+
+            if (idUtilisateur == 0)
+            {
+                MessageBox.Show("Aucun utilisateur connecté.");
+                return;
+            }
+
+            string conString = GetConnectionString();
+
+            using (MySqlConnection con = new MySqlConnection(conString))
             {
                 try
                 {
                     con.Open();
-                    string query = "SELECT u.nom, u.prenom, e.nom AS equipement, c.nom AS categorie, r.date_debut, r.date_fin " +
-                           "FROM reservation r " +
-                           "INNER JOIN user u ON r.user_id = u.id " +
-                           "INNER JOIN equipement e ON r.equipement_id = e.id " +
-                           "INNER JOIN categorie c ON e.categorie_id = c.id";
-
-
+                    string query = @"SELECT 
+                               r.id AS IDReservation,
+                              u.pseudo AS Utilisateur, 
+                              e.nom AS Equipement, 
+                                c.nom AS Categorie, 
+                                r.date_debut, 
+                                r.date_fin 
+                            FROM reservation r 
+                            INNER JOIN equipement e ON r.equipement_id = e.id 
+                            INNER JOIN categorie c ON e.categorie_id = c.id 
+                            INNER JOIN user u ON r.user_id = u.id 
+                            WHERE r.user_id = @idUtilisateur";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
+                        cmd.Parameters.AddWithValue("@idUtilisateur", idUtilisateur);
+
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
                             DataTable dt = new DataTable();
                             dt.Load(reader);
                             DataGridView1.DataSource = dt;
+                            DataGridView1.Columns["IDReservation"].Visible = false;
                         }
                     }
-
                 }
-
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erreur :" + ex.Message);
+                    MessageBox.Show("Erreur : " + ex.Message);
                 }
-
             }
         }
 

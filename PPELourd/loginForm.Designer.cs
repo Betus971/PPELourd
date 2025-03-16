@@ -62,6 +62,7 @@
             TextBoxPseudo.ShadowDecoration.CustomizableEdges = customizableEdges2;
             TextBoxPseudo.Size = new Size(200, 36);
             TextBoxPseudo.TabIndex = 2;
+            TextBoxPseudo.TextChanged += TextBoxPseudo_TextChanged;
             // 
             // TextBoxMdp
             // 

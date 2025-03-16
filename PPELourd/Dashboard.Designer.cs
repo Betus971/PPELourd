@@ -112,6 +112,7 @@
             DataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             DataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             DataGridView1.CellContentClick += DataGridView1_CellContentClick;
+            DataGridView1.CellDoubleClick += DataGridView1_CellDoubleClick;
             // 
             // guna2GradientPanel1
             // 
