@@ -11,23 +11,23 @@ namespace PPELourd
         public int Id { get; set; }
         public Equipement Equipement { get; set; }
         public string Utilisateur { get; set; }
-        public DateTime DateReservation { get; set; }
+        public DateTime? DateDebut { get; set; }
         public DateTime? DateRetour { get; set; } // Optionnel : pour gérer le retour de l'équipement
 
 
 
-        public Reservation(int id, Equipement equipement, string utilisateur, DateTime dateReservation)
+        public Reservation(int id, Equipement equipement, string utilisateur, DateTime dateDebut, DateTime dateRetour)
         {
             Id = id;
             Equipement = equipement;
             Utilisateur = utilisateur;
-            DateReservation = dateReservation;
-            DateRetour = null;
+            DateDebut = dateDebut;
+            DateRetour = dateRetour;
         }
 
         public override string ToString()
         {
-            return $"Réservation [Id={Id}, Equipement={Equipement.GetNom}, Utilisateur={Utilisateur}, Date={DateReservation}]";
+            return $"Réservation [Id={Id}, Equipement={Equipement.GetNom}, Utilisateur={Utilisateur}, Date={DateDebut}, Date={DateRetour}]";
         }
     }
 }

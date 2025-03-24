@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.DirectoryServices.ActiveDirectory;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -18,29 +19,35 @@ namespace PPELourd
         private int idCategorie;
         private int idReservation;
         private bool OuvertPartDoubleClick;
+        private string nomCategorie;
+        private string nomEquipement;
 
-
+        private BDD bdd;
 
 
 
         // private List<Reservation> reservations = new List<Reservation>();
-        public ReservationForm(int idEquipement = 0, int idReservation = 0, int idCategorie = 0, bool ouvertparDoubleClick = false)
+
+
+        public ReservationForm(int idEquipement, int idCategorie, int idReservation, string nomCategorie, string nomEquipement, bool ouvertparDoubleClick)
         {
             InitializeComponent();
+            bdd = new BDD();
+
+
+            // Affectation des valeurs
+
             this.idEquipement = idEquipement;
             this.idCategorie = idCategorie;
+            this.idReservation = idReservation;
+            this.nomCategorie = nomCategorie;
+            this.nomEquipement = nomEquipement;
             this.OuvertPartDoubleClick = ouvertparDoubleClick;
-            this.idReservation = idReservation;  // On l'affecte dans le constructeur
 
 
             if (idReservation > 0)
             {
                 ChargerReservation(idReservation); // Appeler la méthode pour charger les détails de la réservation
-            }
-            else
-            {
-                // Si aucun ID de réservation n'est fourni, vous pouvez initialiser le formulaire pour une nouvelle réservation
-                MessageBox.Show("Aucun ID de réservation fourni. Préparation pour une nouvelle réservation.");
             }
 
 
@@ -79,6 +86,7 @@ namespace PPELourd
 
         private void ChargerReservation(int idReservation)
         {
+
             string conString = "server=localhost;database=ppelourd;uid=donavan;pwd=dodo;";
 
             using (MySqlConnection con = new MySqlConnection(conString))
@@ -86,18 +94,16 @@ namespace PPELourd
                 try
                 {
                     con.Open();
-                    string query = @"SELECT
-                                      e.id AS EquipementId,
-                                        e.nom AS Equipement,
-                                        c.nom AS Categorie,
-                                        r.date_debut,
-                                         r.date_fin
-                                                 FROM reservation r
-                                                                    INNER JOIN equipement e ON r.equipement_id = e.id
-                                                                    INNER JOIN categorie c ON e.categorie_id = c.id
-                                                                    WHERE r.id = @idReservation";
-                           MessageBox.Show("ID de réservation : " + idReservation);
-            MessageBox.Show("Requête SQL : " + query);
+                    string query = @"
+                SELECT e.id AS EquipementId, 
+                       e.nom AS Equipement, 
+                       c.nom AS Categorie, 
+                       r.date_debut, 
+                       r.date_fin
+                FROM reservation r
+                INNER JOIN equipement e ON r.equipement_id = e.id
+                INNER JOIN categorie c ON e.categorie_id = c.id
+                WHERE r.id = @idReservation";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
@@ -107,23 +113,23 @@ namespace PPELourd
                         {
                             if (reader.Read())
                             {
-                                // Afficher les valeurs pour le débogage
-                                MessageBox.Show("Equipement: " + reader["Equipement"].ToString());
-                                MessageBox.Show("Categorie: " + reader["Categorie"].ToString());
-                                MessageBox.Show("Date Debut: " + reader["date_debut"].ToString());
-                                MessageBox.Show("Date Fin: " + reader["date_fin"].ToString());
+                                // Mise à jour des labels et contrôles
+                                // label1.Text = reader["Equipement"].ToString();
+                                // labelUtilisateur.Text = reader["Categorie"].ToString();
 
-                                // Charger les valeurs dans les contrôles
-                                label1.Text = reader["Equipement"].ToString();
-                                labelUtilisateur.Text = reader["Categorie"].ToString();
                                 DateTimePickeReservation1.Value = Convert.ToDateTime(reader["date_debut"]);
                                 DateTimePickeReservation2.Value = Convert.ToDateTime(reader["date_fin"]);
 
-                                // Remplir le ComboBox avec l'équipement correspondant
-                                ComboBoxEquipement.SelectedValue = Convert.ToInt32(reader["EquipementId"]);
-
-                                // Charger les équipements en fonction de la catégorie si besoin
+                                // Charger les équipements en fonction de la catégorie avant d'affecter le ComboBox
                                 LoadEquipements(Convert.ToInt32(reader["EquipementId"]));
+
+                                // Vérifier que l'élément existe avant de l'affecter au ComboBox
+                                if (ComboBoxEquipement.Items.Count > 0)
+                                {
+                                    ComboBoxEquipement.SelectedValue = Convert.ToInt32(reader["EquipementId"]);
+                                }
+                                // Mettre à jour le ComboBox de la catégorie
+                                ComboBoxCategorieEquipement.SelectedItem = reader["Categorie"].ToString();
                             }
                             else
                             {
@@ -162,8 +168,6 @@ namespace PPELourd
                 }
             }
         }
-
-
         private void ButtonReservation_Click(object sender, EventArgs e)
         {
             if (ComboBoxEquipement.SelectedValue == null)
@@ -171,6 +175,7 @@ namespace PPELourd
                 MessageBox.Show("Veuillez sélectionner un équipement.");
                 return;
             }
+
 
             DateTime dateDebut = DateTimePickeReservation1.Value;
             DateTime dateFin = DateTimePickeReservation2.Value;
@@ -340,6 +345,11 @@ namespace PPELourd
         }
 
         private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click_1(object sender, EventArgs e)
         {
 
         }

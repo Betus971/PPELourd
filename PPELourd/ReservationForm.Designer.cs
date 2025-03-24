@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges17 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             ButtonReservation = new Guna.UI2.WinForms.Guna2Button();
             ComboBoxEquipement = new Guna.UI2.WinForms.Guna2ComboBox();
             guna2ContextMenuStrip1 = new Guna.UI2.WinForms.Guna2ContextMenuStrip();
@@ -56,6 +56,7 @@
             UserStatus = new Label();
             ButtonToDashboard = new Guna.UI2.WinForms.Guna2Button();
             ButtonRendreEquipement = new Guna.UI2.WinForms.Guna2Button();
+            LabelCategorie = new Label();
             guna2ContextMenuStrip1.SuspendLayout();
             guna2ContextMenuStrip2.SuspendLayout();
             SuspendLayout();
@@ -63,7 +64,7 @@
             // ButtonReservation
             // 
             ButtonReservation.BorderRadius = 15;
-            ButtonReservation.CustomizableEdges = customizableEdges1;
+            ButtonReservation.CustomizableEdges = customizableEdges15;
             ButtonReservation.DisabledState.BorderColor = Color.DarkGray;
             ButtonReservation.DisabledState.CustomBorderColor = Color.DarkGray;
             ButtonReservation.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -73,7 +74,7 @@
             ButtonReservation.ForeColor = Color.White;
             ButtonReservation.Location = new Point(319, 362);
             ButtonReservation.Name = "ButtonReservation";
-            ButtonReservation.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            ButtonReservation.ShadowDecoration.CustomizableEdges = customizableEdges16;
             ButtonReservation.Size = new Size(200, 45);
             ButtonReservation.TabIndex = 0;
             ButtonReservation.Text = "Reservation";
@@ -82,7 +83,7 @@
             // ComboBoxEquipement
             // 
             ComboBoxEquipement.BackColor = Color.Transparent;
-            ComboBoxEquipement.CustomizableEdges = customizableEdges3;
+            ComboBoxEquipement.CustomizableEdges = customizableEdges17;
             ComboBoxEquipement.DrawMode = DrawMode.OwnerDrawFixed;
             ComboBoxEquipement.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboBoxEquipement.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -92,7 +93,7 @@
             ComboBoxEquipement.ItemHeight = 30;
             ComboBoxEquipement.Location = new Point(319, 250);
             ComboBoxEquipement.Name = "ComboBoxEquipement";
-            ComboBoxEquipement.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            ComboBoxEquipement.ShadowDecoration.CustomizableEdges = customizableEdges18;
             ComboBoxEquipement.Size = new Size(200, 36);
             ComboBoxEquipement.TabIndex = 1;
             ComboBoxEquipement.SelectedIndexChanged += ComboBoxEquipement_SelectedIndexChanged;
@@ -142,7 +143,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(152, 250);
+            label1.Location = new Point(170, 250);
             label1.Name = "label1";
             label1.Size = new Size(143, 15);
             label1.TabIndex = 5;
@@ -161,7 +162,7 @@
             // ComboBoxCategorieEquipement
             // 
             ComboBoxCategorieEquipement.BackColor = Color.Transparent;
-            ComboBoxCategorieEquipement.CustomizableEdges = customizableEdges5;
+            ComboBoxCategorieEquipement.CustomizableEdges = customizableEdges19;
             ComboBoxCategorieEquipement.DrawMode = DrawMode.OwnerDrawFixed;
             ComboBoxCategorieEquipement.DropDownStyle = ComboBoxStyle.DropDownList;
             ComboBoxCategorieEquipement.FocusedColor = Color.FromArgb(94, 148, 255);
@@ -171,7 +172,7 @@
             ComboBoxCategorieEquipement.ItemHeight = 30;
             ComboBoxCategorieEquipement.Location = new Point(319, 165);
             ComboBoxCategorieEquipement.Name = "ComboBoxCategorieEquipement";
-            ComboBoxCategorieEquipement.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            ComboBoxCategorieEquipement.ShadowDecoration.CustomizableEdges = customizableEdges20;
             ComboBoxCategorieEquipement.Size = new Size(200, 36);
             ComboBoxCategorieEquipement.TabIndex = 8;
             ComboBoxCategorieEquipement.SelectedIndexChanged += ComboBoxCategorieEquipement_SelectedIndexChanged;
@@ -179,7 +180,7 @@
             // DateTimePickeReservation1
             // 
             DateTimePickeReservation1.Checked = true;
-            DateTimePickeReservation1.CustomizableEdges = customizableEdges7;
+            DateTimePickeReservation1.CustomizableEdges = customizableEdges21;
             DateTimePickeReservation1.FillColor = Color.Red;
             DateTimePickeReservation1.Font = new Font("Segoe UI", 9F);
             DateTimePickeReservation1.Format = DateTimePickerFormat.Long;
@@ -187,7 +188,7 @@
             DateTimePickeReservation1.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             DateTimePickeReservation1.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             DateTimePickeReservation1.Name = "DateTimePickeReservation1";
-            DateTimePickeReservation1.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            DateTimePickeReservation1.ShadowDecoration.CustomizableEdges = customizableEdges22;
             DateTimePickeReservation1.Size = new Size(200, 36);
             DateTimePickeReservation1.TabIndex = 9;
             DateTimePickeReservation1.Value = new DateTime(2025, 3, 9, 12, 31, 55, 594);
@@ -196,7 +197,7 @@
             // DateTimePickeReservation2
             // 
             DateTimePickeReservation2.Checked = true;
-            DateTimePickeReservation2.CustomizableEdges = customizableEdges9;
+            DateTimePickeReservation2.CustomizableEdges = customizableEdges23;
             DateTimePickeReservation2.FillColor = Color.Blue;
             DateTimePickeReservation2.Font = new Font("Segoe UI", 9F);
             DateTimePickeReservation2.Format = DateTimePickerFormat.Long;
@@ -204,7 +205,7 @@
             DateTimePickeReservation2.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             DateTimePickeReservation2.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             DateTimePickeReservation2.Name = "DateTimePickeReservation2";
-            DateTimePickeReservation2.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            DateTimePickeReservation2.ShadowDecoration.CustomizableEdges = customizableEdges24;
             DateTimePickeReservation2.Size = new Size(200, 36);
             DateTimePickeReservation2.TabIndex = 10;
             DateTimePickeReservation2.Value = new DateTime(2025, 3, 9, 12, 32, 11, 692);
@@ -224,7 +225,7 @@
             // 
             ButtonToDashboard.BorderRadius = 15;
             ButtonToDashboard.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            ButtonToDashboard.CustomizableEdges = customizableEdges11;
+            ButtonToDashboard.CustomizableEdges = customizableEdges25;
             ButtonToDashboard.DisabledState.BorderColor = Color.DarkGray;
             ButtonToDashboard.DisabledState.CustomBorderColor = Color.DarkGray;
             ButtonToDashboard.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -234,7 +235,7 @@
             ButtonToDashboard.ForeColor = Color.White;
             ButtonToDashboard.Location = new Point(319, 447);
             ButtonToDashboard.Name = "ButtonToDashboard";
-            ButtonToDashboard.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            ButtonToDashboard.ShadowDecoration.CustomizableEdges = customizableEdges26;
             ButtonToDashboard.Size = new Size(200, 45);
             ButtonToDashboard.TabIndex = 12;
             ButtonToDashboard.Text = "Dashboard";
@@ -243,7 +244,7 @@
             // ButtonRendreEquipement
             // 
             ButtonRendreEquipement.BorderRadius = 15;
-            ButtonRendreEquipement.CustomizableEdges = customizableEdges13;
+            ButtonRendreEquipement.CustomizableEdges = customizableEdges27;
             ButtonRendreEquipement.DisabledState.BorderColor = Color.DarkGray;
             ButtonRendreEquipement.DisabledState.CustomBorderColor = Color.DarkGray;
             ButtonRendreEquipement.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
@@ -253,17 +254,28 @@
             ButtonRendreEquipement.ForeColor = Color.White;
             ButtonRendreEquipement.Location = new Point(576, 362);
             ButtonRendreEquipement.Name = "ButtonRendreEquipement";
-            ButtonRendreEquipement.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            ButtonRendreEquipement.ShadowDecoration.CustomizableEdges = customizableEdges28;
             ButtonRendreEquipement.Size = new Size(180, 45);
             ButtonRendreEquipement.TabIndex = 13;
             ButtonRendreEquipement.Text = "Rendre l'equipement";
             ButtonRendreEquipement.Click += ButtonRendreEquipement_Click;
+            // 
+            // LabelCategorie
+            // 
+            LabelCategorie.AutoSize = true;
+            LabelCategorie.Location = new Point(175, 165);
+            LabelCategorie.Name = "LabelCategorie";
+            LabelCategorie.Size = new Size(138, 15);
+            LabelCategorie.TabIndex = 14;
+            LabelCategorie.Text = "Choisissez une Categorie";
+            LabelCategorie.Click += label2_Click_1;
             // 
             // ReservationForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 528);
+            Controls.Add(LabelCategorie);
             Controls.Add(ButtonRendreEquipement);
             Controls.Add(ButtonToDashboard);
             Controls.Add(UserStatus);
@@ -299,5 +311,6 @@
         private Label UserStatus;
         private Guna.UI2.WinForms.Guna2Button ButtonToDashboard;
         private Guna.UI2.WinForms.Guna2Button ButtonRendreEquipement;
+        private Label LabelCategorie;
     }
 }

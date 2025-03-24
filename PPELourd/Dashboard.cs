@@ -22,61 +22,51 @@ namespace PPELourd
         string uid = "donavan";
         string password = "dodo";
         string database = "ppelourd";
+        private readonly int idCategorie;
+
         private string GetConnectionString()
         {
-            return  $"server={server};uid={uid};pwd={password};database={database}";
+            return $"server={server};uid={uid};pwd={password};database={database}";
         }
         public Dashboard()
         {
             InitializeComponent();
-           
+
         }
 
         private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
-        } 
-        
-        
-        private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0) // Vérifiez que l'index de la ligne est valide
+            if (e.RowIndex >= 0)
             {
-                // Obtenez la ligne sélectionnée
-                DataGridViewRow selectedRow = DataGridView1.Rows[e.RowIndex];
+                // Récupérer les valeurs des colonnes de la ligne cliquée
+                int idReservation = Convert.ToInt32(DataGridView1.Rows[e.RowIndex].Cells["idReservation"].Value);
+                int idEquipement = Convert.ToInt32(DataGridView1.Rows[e.RowIndex].Cells["idEquipement"].Value);
+                string nomEquipement = DataGridView1.Rows[e.RowIndex].Cells["Equipement"].Value.ToString();
+                string nomCategorie = DataGridView1.Rows[e.RowIndex].Cells["Categorie"].Value.ToString();
+                string utilisateur = DataGridView1.Rows[e.RowIndex].Cells["Utilisateur"].Value.ToString();
+                DateTime dateDebut = Convert.ToDateTime(DataGridView1.Rows[e.RowIndex].Cells["DateDebut"].Value);
+                DateTime dateRetour = Convert.ToDateTime(DataGridView1.Rows[e.RowIndex].Cells["DateRetour"].Value);
 
-                // Vérifiez que la cellule "IDReservation" n'est pas vide
-                if (selectedRow.Cells["IDReservation"].Value != DBNull.Value)
-                {
-                    try
-                    {
-                        // Extrayez l'ID de réservation de la cellule
-                        int idReservation = Convert.ToInt32(selectedRow.Cells["IDReservation"].Value);
 
-                        // Affichez l'ID de réservation pour vérification (optionnel)
-                        MessageBox.Show("ID de réservation sélectionné : " + idReservation);
 
-                        // Ouvrez le formulaire de réservation avec l'ID de réservation
-                        var reservationForm = new ReservationForm(idReservation);
-                        reservationForm.ShowDialog();
-
-                        // Après la modification ou le rendu de l'équipement, mettez à jour l'état de l'équipement
-                        // et rechargez la liste des réservations
-                        AfficherTable_Click(null, null);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Erreur lors de la récupération de l'ID de réservation : " + ex.Message);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("ID de réservation non valide.");
-                }
+                // Par exemple, ouvrir un formulaire de réservation avec ces informations
+                ReservationForm reservationForm = new ReservationForm(idEquipement, idCategorie, idReservation, nomCategorie, nomEquipement, true);
+                reservationForm.ShowDialog();
             }
         }
-
        
+
+
+
+
+        private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            
+
+        }
+
+
         private void AfficherTable_Click(object sender, EventArgs e)
         {
             int idUtilisateur = User.GetutilisateurConnecte()?.Id ?? 0;
@@ -94,18 +84,20 @@ namespace PPELourd
                 try
                 {
                     con.Open();
-                    string query = @"SELECT 
-                               r.id AS IDReservation,
-                              u.pseudo AS Utilisateur, 
-                              e.nom AS Equipement, 
-                                c.nom AS Categorie, 
-                                r.date_debut, 
-                                r.date_fin 
-                            FROM reservation r 
-                            INNER JOIN equipement e ON r.equipement_id = e.id 
-                            INNER JOIN categorie c ON e.categorie_id = c.id 
-                            INNER JOIN user u ON r.user_id = u.id 
-                            WHERE r.user_id = @idUtilisateur";
+                    string query = @"
+                SELECT 
+                    r.id AS idReservation,  -- Ajoutez la colonne IDReservation
+                    r.equipement_id AS idEquipement,  -- Ajoutez l'ID de l'équipement
+                    r.date_debut AS DateDebut,
+                    r.date_fin AS DateRetour,
+                    u.pseudo AS Utilisateur, 
+                    e.nom AS Equipement, 
+                    c.nom AS Categorie
+                FROM reservation r
+                INNER JOIN equipement e ON r.equipement_id = e.id
+                INNER JOIN categorie c ON e.categorie_id = c.id
+                INNER JOIN user u ON r.user_id = u.id
+                WHERE r.user_id = @idUtilisateur";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, con))
                     {
@@ -115,8 +107,27 @@ namespace PPELourd
                         {
                             DataTable dt = new DataTable();
                             dt.Load(reader);
-                            DataGridView1.DataSource = dt;
-                            DataGridView1.Columns["IDReservation"].Visible = false;
+                            DataGridView1.DataSource = dt;  // Remplacez DataGridView1 par DataGridView2
+
+                            // Vérifiez si la colonne existe avant de la manipuler
+                            if (DataGridView1.Columns.Contains("idReservation"))
+                                DataGridView1.Columns["idReservation"].Visible = false;
+                            if (DataGridView1.Columns.Contains("idEquipement"))
+                                DataGridView1.Columns["idEquipement"].Visible = false;
+                            if (DataGridView1.Columns.Contains("Categorie"))
+                                DataGridView1.Columns["Categorie"].Visible = false;
+
+                            // Vérification et modification des en-têtes
+                            if (DataGridView1.Columns.Contains("Utilisateur"))
+                                DataGridView1.Columns["Utilisateur"].HeaderText = "Utilisateur";
+                            if (DataGridView1.Columns.Contains("Equipement"))
+                                DataGridView1.Columns["Equipement"].HeaderText = "Equipement";
+                            if (DataGridView1.Columns.Contains("Categorie"))
+                                DataGridView1.Columns["Categorie"].HeaderText = "Catégorie";
+                            if (DataGridView1.Columns.Contains("DateDebut"))
+                                DataGridView1.Columns["DateDebut"].HeaderText = "Date Début";
+                            if (DataGridView1.Columns.Contains("DateRetour"))
+                                DataGridView1.Columns["DateRetour"].HeaderText = "Date Fin";
                         }
                     }
                 }
@@ -133,9 +144,17 @@ namespace PPELourd
 
         private void ButtonAfficherReservationForm_Click(object sender, EventArgs e)
         {
-            var reservation = new ReservationForm();
-            reservation.Show();
-            this.Hide();
+
+            // Utiliser des valeurs par défaut pour ouvrir le formulaire
+            int idEquipement = 0; // Valeur par défaut
+            int idCategorie = 0; // Valeur par défaut
+            int idReservation = 0; // Valeur par défaut
+            string nomCategorie = "Catégorie par défaut"; // Valeur par défaut
+            string nomEquipement = "Équipement par défaut"; // Valeur par défaut
+            bool ouvertparDoubleClick = false; // Valeur par défaut
+            ReservationForm reservation = new ReservationForm(idEquipement, idCategorie, idReservation, nomCategorie, nomEquipement, ouvertparDoubleClick);  // Ouvre le formulaire sans paramètres
+             reservation.Show();
+             this.Hide();
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
@@ -223,5 +242,44 @@ namespace PPELourd
                 gunaChart1.Update();
             }
         }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                // Récupérer les valeurs des colonnes de la ligne cliquée
+                int idReservation = Convert.ToInt32(DataGridView2.Rows[e.RowIndex].Cells["idReservation"].Value);
+                int idEquipement = Convert.ToInt32(DataGridView2.Rows[e.RowIndex].Cells["idEquipement"].Value);
+                string nomEquipement = DataGridView2.Rows[e.RowIndex].Cells["Equipement"].Value.ToString();
+                string nomCategorie = DataGridView2.Rows[e.RowIndex].Cells["Categorie"].Value.ToString();
+                string utilisateur = DataGridView2.Rows[e.RowIndex].Cells["Utilisateur"].Value.ToString();
+                DateTime dateDebut = Convert.ToDateTime(DataGridView2.Rows[e.RowIndex].Cells["DateDebut"].Value);
+                DateTime dateRetour = Convert.ToDateTime(DataGridView2.Rows[e.RowIndex].Cells["DateRetour"].Value);
+
+               
+
+                // Par exemple, ouvrir un formulaire de réservation avec ces informations
+                ReservationForm reservationForm = new ReservationForm(idEquipement, idCategorie, idReservation, nomCategorie, nomEquipement, true);
+                reservationForm.ShowDialog();
+            }
+        }
+
+        private void OuverturePartDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                // Récupère l'ID de la réservation (assurez-vous que cette colonne existe dans le DataGridView)
+                int idReservation = Convert.ToInt32(DataGridView1.Rows[e.RowIndex].Cells["IDReservation"].Value);
+                int idEquipement = Convert.ToInt32(DataGridView1.Rows[e.RowIndex].Cells["IDEquipement"].Value);
+                string nomEquipement = DataGridView1.Rows[e.RowIndex].Cells["Equipement"].Value.ToString();
+                string nomCategorie = DataGridView1.Rows[e.RowIndex].Cells["Categorie"].Value.ToString();
+
+                // Crée une nouvelle instance du formulaire de réservation et ouvre-le
+                ReservationForm reservationForm = new ReservationForm(idEquipement, idCategorie, idReservation, nomCategorie, nomEquipement, true);
+                reservationForm.ShowDialog();
+            }
+
+            }
     }
+
 }

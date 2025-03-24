@@ -103,5 +103,43 @@ namespace PPELourd
         {
             throw new NotImplementedException();
         }
+
+        public List<Equipement> GetEquipementsFromDatabase(int idCategorie)
+        {
+            List<Equipement> equipements = new List<Equipement>();
+
+            using (MySqlConnection con = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+                    string query = "SELECT id, nom, disponible, categorie_id FROM equipement WHERE categorie_id = @idCategorie AND disponible = 1";
+
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, con))
+                    {
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Equipement equipement = new Equipement(
+                                Convert.ToInt32(reader["id"]),
+                                     reader["nom"].ToString(),
+                            Convert.ToBoolean(reader["disponible"]),
+                            Convert.ToInt32(reader["categorie_id"])
+                        );
+                                equipements.Add(equipement);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erreur lors de la récupération des équipements : " + ex.Message);
+                }
+            }
+
+            return equipements;
+        }
     }
 }

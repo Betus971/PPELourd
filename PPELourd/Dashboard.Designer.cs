@@ -58,8 +58,10 @@
             AfficherTable = new Guna.UI2.WinForms.Guna2Button();
             gunaBarDataset1 = new Guna.Charts.WinForms.GunaBarDataset();
             gunaChart1 = new Guna.Charts.WinForms.GunaChart();
+            DataGridView2 = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)DataGridView1).BeginInit();
             guna2GradientPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)DataGridView2).BeginInit();
             SuspendLayout();
             // 
             // DataGridView1
@@ -85,7 +87,7 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
             DataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
             DataGridView1.GridColor = Color.FromArgb(231, 229, 255);
-            DataGridView1.Location = new Point(206, 252);
+            DataGridView1.Location = new Point(206, 264);
             DataGridView1.Name = "DataGridView1";
             DataGridView1.RowHeadersVisible = false;
             DataGridView1.Size = new Size(940, 280);
@@ -136,7 +138,7 @@
             ButtonAfficherReservationForm.FillColor = Color.Black;
             ButtonAfficherReservationForm.Font = new Font("Segoe UI", 9F);
             ButtonAfficherReservationForm.ForeColor = Color.White;
-            ButtonAfficherReservationForm.Location = new Point(12, 192);
+            ButtonAfficherReservationForm.Location = new Point(13, 372);
             ButtonAfficherReservationForm.Name = "ButtonAfficherReservationForm";
             ButtonAfficherReservationForm.ShadowDecoration.CustomizableEdges = customizableEdges2;
             ButtonAfficherReservationForm.Size = new Size(180, 45);
@@ -154,7 +156,7 @@
             AfficherTable.FillColor = Color.Red;
             AfficherTable.Font = new Font("Segoe UI", 9F);
             AfficherTable.ForeColor = Color.White;
-            AfficherTable.Location = new Point(12, 112);
+            AfficherTable.Location = new Point(14, 302);
             AfficherTable.Name = "AfficherTable";
             AfficherTable.ShadowDecoration.CustomizableEdges = customizableEdges4;
             AfficherTable.Size = new Size(180, 45);
@@ -201,6 +203,18 @@
             gunaChart1.ZAxes.Ticks = tick3;
             gunaChart1.Load += gunaChart1_Load_1;
             // 
+            // DataGridView2
+            // 
+            DataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCellsExceptHeader;
+            DataGridView2.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            DataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DataGridView2.Location = new Point(206, 264);
+            DataGridView2.Name = "DataGridView2";
+            DataGridView2.Size = new Size(940, 280);
+            DataGridView2.TabIndex = 3;
+            DataGridView2.CellContentClick += dataGridView2_CellContentClick;
+            DataGridView2.CellContentDoubleClick += OuverturePartDoubleClick;
+            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -209,11 +223,13 @@
             Controls.Add(gunaChart1);
             Controls.Add(guna2GradientPanel1);
             Controls.Add(DataGridView1);
+            Controls.Add(DataGridView2);
             Name = "Dashboard";
             Text = "Dashboard";
             Load += Dashboard_Load;
             ((System.ComponentModel.ISupportInitialize)DataGridView1).EndInit();
             guna2GradientPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)DataGridView2).EndInit();
             ResumeLayout(false);
         }
 
@@ -226,5 +242,6 @@
         private Guna.UI2.WinForms.Guna2Button ButtonAfficherReservationForm;
         private Guna.Charts.WinForms.GunaBarDataset gunaBarDataset1;
         private Guna.Charts.WinForms.GunaChart gunaChart1;
+        private DataGridView DataGridView2;
     }
 }

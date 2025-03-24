@@ -12,14 +12,17 @@ namespace PPELourd
         private int Id;
         private string nom;
         private bool disponible;
+        private int idCategorie; // Ajout du champ idCategorie
 
 
-        public Equipement( int id , string nom ,bool disponible)
+        public Equipement( int id , string nom ,bool disponible, int idCategorie)
         {
             this.Id = id;
             this.nom = nom;
             this.disponible = disponible;
-            
+            this.idCategorie = idCategorie; 
+
+
 
 
            }
@@ -55,9 +58,20 @@ namespace PPELourd
         {
             this.disponible = disponible;
         }
+
+        public int GetIdCategorie()
+        {
+            return idCategorie;
+        }
+
+        public void SetIdCategorie(int idCategorie)
+        {
+            this.idCategorie = idCategorie;
+        }
+
         public override string ToString()
         {
-            return $"Equipement [Id={Id}, Nom={nom}, Disponible={disponible}]";
+            return $"Equipement [Id={Id}, Nom={nom}, Disponible={disponible}] , IdCategorie={idCategorie}]";
         }
     }
 }
